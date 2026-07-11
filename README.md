@@ -3,9 +3,6 @@
 A full-stack parking management system combining **Python**, **Data
 Structures**, **HTML/CSS/Bootstrap**, **JavaScript**, and **PostgreSQL**.
 
-> **Note:** The original project brief suggested C++ and SQLite/MySQL.
-> This build uses **Python** (`Flask` + `psycopg2`) and **PostgreSQL** instead.
-
 📄 **Start here:** [`docs/PROJECT_REPORT.md`](docs/PROJECT_REPORT.md) — full write-up for submission.
 🛠️ **Setup:** [`docs/SETUP.md`](docs/SETUP.md) · 🔌 **API reference:** [`docs/API.md`](docs/API.md) · 🏗️ **Architecture:** [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 
