@@ -1,0 +1,24 @@
+# Build artifacts
+*.o
+*.obj
+*.exe
+*.out
+
+# Python
+__pycache__/
+*.pyc
+venv/
+*.egg-info/
+
+# Database (don't commit real runtime data)
+database/parking.db
+database/*.db-journal
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+
+# Logs
+*.log
