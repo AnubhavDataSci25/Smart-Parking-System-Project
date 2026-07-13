@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Parking — Admin Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="marquee d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <div class="brand">
+        CENTRAL PARK GARAGE
+        <small>Admin Dashboard</small>
+    </div>
+    <a href="index.html" class="btn btn-outline-chalk btn-sm">&larr; Back to Console</a>
+</div>
+
+<div id="connection-banner" class="alert alert-danger d-none rounded-0 mb-0 text-center" role="alert">
+    Can't reach the backend API. Make sure <code>python3 backend/api.py</code> is running, then reload this page.
+</div>
+
+<div class="container-fluid py-4 px-3 px-md-4">
+
+    <!-- ================= STAT CARDS ================= -->
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+            <div class="stat-card">
+                <div class="stat-value" id="stat-revenue">Rs 0.00</div>
+                <div class="stat-label">Total Revenue</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="stat-card">
+                <div class="stat-value" id="stat-serviced">0</div>
+                <div class="stat-label">Vehicles Serviced</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="stat-card">
+                <div class="stat-value" id="stat-parked">0</div>
+                <div class="stat-label">Currently Parked</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="stat-card">
+                <div class="stat-value" id="stat-waiting">0</div>
+                <div class="stat-label">Currently Waiting</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- ================= MANAGE SLOTS ================= -->
+        <div class="col-lg-6">
+            <div class="panel mb-4">
+                <div class="panel-title">Manage Slots</div>
+                <div class="table-responsive table-scroll">
+                    <table class="table table-dashboard">
+                        <thead>
+                            <tr>
+                                <th>Slot</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="slots-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ================= REVENUE REPORT ================= -->
+            <div class="panel">
+                <div class="panel-title">Revenue by Vehicle Type</div>
+                <div id="revenue-by-type"></div>
+            </div>
+        </div>
+
+        <!-- ================= HISTORY ================= -->
+        <div class="col-lg-6">
+            <div class="panel">
+                <div class="panel-title">Full Activity History</div>
+                <div class="table-responsive table-scroll">
+                    <table class="table table-dashboard">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Action</th>
+                                <th>Vehicle</th>
+                                <th>Slot</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="app-footer">
+    Smart Parking Management System &middot;
+    <a class="footer-link" href="index.html">Attendant Console</a>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

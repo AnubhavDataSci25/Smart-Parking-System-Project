@@ -1,0 +1,410 @@
+/* =========================================================================
+   Smart Parking — Design Tokens
+   Subject: an attendant's control panel at a physical parking gate.
+   Palette: asphalt + concrete, with amber hazard-stripe accent and
+   red/green used ONLY for slot status signaling (never decoration).
+   Type: Bebas Neue (signage), Inter (UI text), JetBrains Mono (tickets).
+   ========================================================================= */
+
+:root {
+    --asphalt: #17181b;
+    --concrete: #24272c;
+    --concrete-light: #2f3339;
+    --concrete-border: #3a3e45;
+    --chalk: #ededE6;
+    --chalk-dim: #9a9da5;
+    --amber: #f2b705;
+    --amber-dark: #c99400;
+    --signal-green: #3fa796;
+    --signal-green-dim: #274943;
+    --signal-red: #d64545;
+    --signal-red-dim: #4a2a2a;
+    --signal-gray: #5b5f66;
+
+    --font-display: 'Bebas Neue', 'Oswald', sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+    --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: var(--asphalt);
+    background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 3px);
+    color: var(--chalk);
+    font-family: var(--font-body);
+    min-height: 100vh;
+}
+
+/* ---------------- Top marquee bar ---------------- */
+.marquee {
+    background: linear-gradient(180deg, var(--concrete) 0%, var(--asphalt) 100%);
+    border-bottom: 3px solid var(--amber);
+    padding: 0.9rem 1.5rem;
+}
+
+.marquee .brand {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    letter-spacing: 0.04em;
+    color: var(--chalk);
+    line-height: 1;
+}
+
+.marquee .brand small {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: var(--chalk-dim);
+    text-transform: uppercase;
+}
+
+.led-counter {
+    font-family: var(--font-mono);
+    background: #0d0e10;
+    border: 1px solid var(--concrete-border);
+    border-radius: var(--radius);
+    padding: 0.5rem 1rem;
+    color: var(--amber);
+    font-size: 1.4rem;
+    letter-spacing: 0.06em;
+    text-shadow: 0 0 8px rgba(242, 183, 5, 0.55);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+}
+
+.led-counter .label {
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    color: var(--chalk-dim);
+    letter-spacing: 0.18em;
+    text-shadow: none;
+}
+
+/* ---------------- Panels ---------------- */
+.panel {
+    background: var(--concrete);
+    border: 1px solid var(--concrete-border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+}
+
+.panel-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    letter-spacing: 0.03em;
+    color: var(--chalk);
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed var(--concrete-border);
+}
+
+/* ---------------- Slot map ---------------- */
+.slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    gap: 0.6rem;
+}
+
+.slot {
+    aspect-ratio: 1;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid var(--concrete-border);
+    transition: transform 0.12s ease;
+}
+
+.slot:hover { transform: translateY(-2px); }
+
+.slot .type-tag {
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-top: 0.15rem;
+}
+
+.slot.status-empty {
+    background: var(--signal-green-dim);
+    color: var(--signal-green);
+    border-color: var(--signal-green);
+}
+
+.slot.status-occupied {
+    background: var(--signal-red-dim);
+    color: var(--signal-red);
+    border-color: var(--signal-red);
+}
+
+.slot.status-outofservice {
+    background: #1c1d20;
+    color: var(--signal-gray);
+    border-color: var(--signal-gray);
+}
+
+/* ---------------- Nav tabs (console) ---------------- */
+.console-tabs .nav-link {
+    font-family: var(--font-display);
+    letter-spacing: 0.04em;
+    font-size: 1.05rem;
+    color: var(--chalk-dim);
+    border: none;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+    padding: 0.5rem 1rem;
+}
+
+.console-tabs .nav-link.active {
+    color: var(--amber);
+    background: transparent;
+    border-bottom-color: var(--amber);
+}
+
+/* ---------------- Form controls ---------------- */
+.form-control, .form-select {
+    background: var(--concrete-light);
+    border: 1px solid var(--concrete-border);
+    color: var(--chalk);
+    font-family: var(--font-mono);
+}
+
+.form-control:focus, .form-select:focus {
+    background: var(--concrete-light);
+    color: var(--chalk);
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px rgba(242, 183, 5, 0.25);
+}
+
+.form-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--chalk-dim);
+}
+
+.btn-amber {
+    background: var(--amber);
+    border: 1px solid var(--amber-dark);
+    color: #221a00;
+    font-family: var(--font-display);
+    letter-spacing: 0.04em;
+    font-size: 1.05rem;
+    padding: 0.5rem 1.4rem;
+}
+
+.btn-amber:hover {
+    background: var(--amber-dark);
+    color: #100c00;
+}
+
+.btn-outline-chalk {
+    border: 1px solid var(--concrete-border);
+    color: var(--chalk-dim);
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+}
+
+.btn-outline-chalk:hover {
+    border-color: var(--chalk-dim);
+    color: var(--chalk);
+    background: var(--concrete-light);
+}
+
+/* ---------------- Ticket stub (signature element) ---------------- */
+.ticket {
+    font-family: var(--font-mono);
+    background: #f4f1e6;
+    color: #1b1d21;
+    border-radius: 2px;
+    padding: 1.1rem 1.2rem 1.4rem;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+.ticket::before,
+.ticket::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 14px;
+    background:
+        radial-gradient(circle at 8px 7px, var(--asphalt) 6px, transparent 7px) repeat-x;
+    background-size: 16px 14px;
+}
+
+.ticket::before { top: -7px; }
+.ticket::after  { bottom: -7px; transform: rotate(180deg); }
+
+.ticket .ticket-header {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+    border-bottom: 1px dashed #1b1d21aa;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
+}
+
+.ticket .ticket-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+}
+
+.ticket .ticket-amount {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    text-align: center;
+    margin: 0.6rem 0 0.3rem;
+    letter-spacing: 0.03em;
+}
+
+.ticket .barcode {
+    height: 34px;
+    margin-top: 0.7rem;
+    background: repeating-linear-gradient(
+        90deg,
+        #1b1d21 0px, #1b1d21 2px,
+        transparent 2px, transparent 4px,
+        #1b1d21 4px, #1b1d21 5px,
+        transparent 5px, transparent 9px
+    );
+}
+
+/* ---------------- Waiting queue / history lists ---------------- */
+.list-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.65rem;
+    background: var(--concrete-light);
+    border: 1px solid var(--concrete-border);
+    border-radius: var(--radius);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+.list-row .badge-type {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--chalk-dim);
+}
+
+.empty-note {
+    color: var(--chalk-dim);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+/* ---------------- Stat cards (dashboard) ---------------- */
+.stat-card {
+    background: var(--concrete);
+    border: 1px solid var(--concrete-border);
+    border-radius: var(--radius);
+    padding: 1rem 1.2rem;
+}
+
+.stat-card .stat-value {
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    color: var(--amber);
+    line-height: 1;
+}
+
+.stat-card .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--chalk-dim);
+    margin-top: 0.35rem;
+}
+
+footer.app-footer {
+    color: var(--chalk-dim);
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 1.5rem 0 1rem;
+}
+
+a.footer-link { color: var(--chalk-dim); }
+a.footer-link:hover { color: var(--amber); }
+
+/* ---------------- Dashboard: badges, tables ---------------- */
+.font-mono { font-family: var(--font-mono); }
+
+.slot-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+
+.slot-badge.status-empty {
+    background: var(--signal-green-dim);
+    color: var(--signal-green);
+    border-color: var(--signal-green);
+}
+
+.slot-badge.status-occupied {
+    background: var(--signal-red-dim);
+    color: var(--signal-red);
+    border-color: var(--signal-red);
+}
+
+.slot-badge.status-outofservice {
+    background: #1c1d20;
+    color: var(--signal-gray);
+    border-color: var(--signal-gray);
+}
+
+.table-dashboard {
+    color: var(--chalk);
+    border-color: var(--concrete-border);
+    margin-bottom: 0;
+}
+
+.table-dashboard thead th {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--chalk-dim);
+    border-color: var(--concrete-border);
+    background: var(--concrete-light);
+}
+
+.table-dashboard td {
+    border-color: var(--concrete-border);
+    font-size: 0.88rem;
+    vertical-align: middle;
+}
+
+.table-dashboard tbody tr:hover {
+    background: rgba(255,255,255,0.03);
+}
+
+.table-scroll {
+    max-height: 360px;
+    overflow-y: auto;
+}
